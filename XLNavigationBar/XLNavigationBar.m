@@ -144,7 +144,7 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
 
 - (UIColor *)xl_navBarBackgroundColor {
     UIColor *color = objc_getAssociatedObject(self, &XLBarBackgroundColorKey);
-    if (!color) { return [UIColor whiteColor];}
+    if (!color) {return [UIColor whiteColor];}
     return color;
 }
 
