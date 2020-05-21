@@ -71,6 +71,7 @@ static NSInteger XLBarColorViewTag = 666666;
         }
     }
     [self.xl_backgroundView insertSubview:xl_colorView atIndex:0];
+    [self setNeedsDisplay];
 }
 
 - (UIView *)xl_colorView {
@@ -78,9 +79,7 @@ static NSInteger XLBarColorViewTag = 666666;
 }
 
 - (void)xl_layoutSubviews {
-    
     self.xl_colorView.frame = self.xl_backgroundView.bounds;
-    
     [self xl_layoutSubviews];
 }
 
@@ -128,6 +127,7 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(xl_viewWillAppear:)];
+        [self swizzleSelector:@selector(viewDidLoad) withSelector:@selector(xl_viewDidLoad)];
         [self swizzleSelector:@selector(preferredStatusBarStyle) withSelector:@selector(xl_preferredStatusBarStyle)];
         [self swizzleSelector:@selector(prefersStatusBarHidden) withSelector:@selector(xl_prefersStatusBarHidden)];
     });
@@ -213,11 +213,14 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     return self.xl_statusBarHidden;
 }
 
+- (void)xl_viewDidLoad {
+    self.navigationController.navigationBar.xl_colorView = [[UIView alloc] init];
+    [self xl_viewDidLoad];
+}
+
 - (void)xl_viewWillAppear:(BOOL)animated {
     
-    //不是第一个试图 不用执行以下方法
     if (![self isEqual:self.navigationController.topViewController]) {
-        //执行系统viewWillAppear方法
         [self xl_viewWillAppear:animated];
         return;
     }
@@ -230,9 +233,7 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     self.navigationController.navigationBar.tintColor = self.xl_barButtonColor;
     
     //设置背景颜色
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = self.xl_barBackgroundColor;
-    self.navigationController.navigationBar.xl_colorView = view;
+    self.navigationController.navigationBar.xl_colorView.backgroundColor = self.xl_barBackgroundColor;
     
     //设置透明度
     self.navigationController.navigationBar.xl_backgroundView.alpha = self.xl_barBackgroundAlpha;

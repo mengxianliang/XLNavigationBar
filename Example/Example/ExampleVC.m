@@ -7,6 +7,7 @@
 //
 
 #import "ExampleVC.h"
+#import "ExampleVC2.h"
 #import "XLNavigationBar.h"
 
 @interface ExampleVC ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
@@ -26,7 +27,8 @@
     self.xl_barTitleColor = [UIColor whiteColor];
     self.xl_barButtonColor = [UIColor whiteColor];
     self.xl_statusBarStyle = UIStatusBarStyleLightContent;
-    self.xl_barBackgroundAlpha = 0;
+//    self.xl_barBackgroundAlpha = 0;
+//    self.xl_statusBarHidden = YES;
     
     [self buildTable];
 }
@@ -84,7 +86,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ExampleVC *vc = [[ExampleVC alloc] init];
+    ExampleVC2 *vc = [[ExampleVC2 alloc] init];
     [self.navigationController pushViewController:vc animated:true];
 }
 
