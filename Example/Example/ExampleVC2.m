@@ -8,6 +8,7 @@
 
 #import "ExampleVC2.h"
 #import "XLNavigationBar.h"
+#import "ViewController.h"
 
 @interface ExampleVC2 ()
 
@@ -17,7 +18,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.xl_barBackgroundColor = [UIColor greenColor];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.xl_navBarBackgroundColor = [UIColor greenColor];
+    
+    self.xl_statusBarHidden = YES;
+    
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    ViewController *vc = [[ViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

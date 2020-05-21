@@ -23,11 +23,11 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.xl_barBackgroundColor = [UIColor redColor];
-    self.xl_barTitleColor = [UIColor whiteColor];
-    self.xl_barButtonColor = [UIColor whiteColor];
+    self.xl_navBarBackgroundColor = [UIColor redColor];
+    self.xl_navBarTitleColor = [UIColor clearColor];
+    self.xl_navBarButtonColor = [UIColor whiteColor];
     self.xl_statusBarStyle = UIStatusBarStyleLightContent;
-//    self.xl_barBackgroundAlpha = 0;
+    self.xl_navBarBackgroundAlpha = 0;
 //    self.xl_statusBarHidden = YES;
     
     [self buildTable];
@@ -58,12 +58,17 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat y = scrollView.contentOffset.y;
-    CGFloat alpha = y/(self.tableView.tableHeaderView.bounds.size.height - self.xl_barHeight);
+    CGFloat alpha = y/(self.tableView.tableHeaderView.bounds.size.height - self.xl_navBarHeight);
     if (alpha < 0) {
         alpha = 0;
     }
     NSLog(@"y = %f, alpha = %f", y, alpha);
-    self.xl_barBackgroundAlpha = alpha;
+    self.xl_navBarBackgroundAlpha = alpha;
+    if (alpha >= 1) {
+        self.xl_navBarTitleColor = [UIColor whiteColor];
+    }else {
+        self.xl_navBarTitleColor = [UIColor clearColor];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -19,22 +19,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL xl_statusBarHidden;
 
 ///navigationBar 背景颜色 default [UIColor whiteColor]
-@property (nonatomic, strong) UIColor *xl_barBackgroundColor;
+@property (nonatomic, strong) UIColor *xl_navBarBackgroundColor;
 
 ///navigationBar 背景透明度 default 1
-@property (nonatomic, assign) float xl_barBackgroundAlpha;
+@property (nonatomic, assign) float xl_navBarBackgroundAlpha;
 
 ///navigationBar 标题颜色 default 系统颜色
-@property (nonatomic, strong) UIColor *xl_barTitleColor;
+@property (nonatomic, strong) UIColor *xl_navBarTitleColor;
 
 ///navigationBar 按钮颜色 default 系统颜色
-@property (nonatomic, strong) UIColor *xl_barButtonColor;
+@property (nonatomic, strong) UIColor *xl_navBarButtonColor;
 
 ///navigationBar 分割线隐藏 default NO
-@property (nonatomic, assign) BOOL xl_barShadowImageHidden;
+@property (nonatomic, assign) BOOL xl_navBarShadowImageHidden;
 
 ///navigationBar 高度
-@property (nonatomic, assign, readonly) CGFloat xl_barHeight;
+@property (nonatomic, assign, readonly) CGFloat xl_navBarHeight;
 
 @end
 

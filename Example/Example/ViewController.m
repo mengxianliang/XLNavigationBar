@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "ExampleVC.h"
-
+#import "XLNavigationBar.h"
 
 @interface ViewController ()
 
@@ -20,6 +20,8 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.xl_navBarBackgroundColor = [UIColor orangeColor];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
