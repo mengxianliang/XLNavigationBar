@@ -26,11 +26,11 @@
     //enable XLNavigationBar
     [XLNavigationBar shareInstance].enabled = YES;
     //global config
-    //title color
+    //bar title color
     [XLNavigationBar shareInstance].xl_navBarTitleColor = [UIColor blackColor];
-    //title font
+    //bar title font
     [XLNavigationBar shareInstance].xl_navBarTitleFont = [UIFont systemFontOfSize:20];
-    //background color
+    //bar background color
     [XLNavigationBar shareInstance].xl_navBarBackgroundColor = [UIColor whiteColor];
     return YES;
 }
