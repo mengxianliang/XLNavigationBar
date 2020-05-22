@@ -8,6 +8,8 @@
 
 ## Usage:
 
+*you can config by global or view controller itself, if you config both,  it will prioritize view controller's config.
+
 ### Global Config
 
 ```objc
@@ -52,7 +54,7 @@ self.xl_statusBarStyle = UIStatusBarStyleLightContent;
 self.xl_statusBarHidden = NO;
 ```
 
-### Other
+## Other
 
 ZoomHeader [XLZoomHeader](https://github.com/mengxianliang/XLZoomHeader)
 
