@@ -8,7 +8,7 @@
 
 ## Usage:
 
-*you can config by global or view controller itself, if you config both,  it will prioritize view controller's config.
+*you can config by global or view controller itself, if you config both,  it will prioritize view controller's config.*
 
 ### Global Config
 
