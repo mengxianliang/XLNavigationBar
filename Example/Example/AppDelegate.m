@@ -23,15 +23,15 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
     
-    //开启 XLNavigationBar
+    //enable XLNavigationBar
     [XLNavigationBar shareInstance].enabled = YES;
-    //全局配置
-    [XLNavigationBar shareInstance].xl_navBarTitleColor = [UIColor greenColor];
+    //global config
+    //title color
+    [XLNavigationBar shareInstance].xl_navBarTitleColor = [UIColor blackColor];
+    //title font
     [XLNavigationBar shareInstance].xl_navBarTitleFont = [UIFont systemFontOfSize:20];
-    [XLNavigationBar shareInstance].xl_navBarButtonColor = [UIColor blueColor];
-    [XLNavigationBar shareInstance].xl_navBarBackgroundColor = [UIColor yellowColor];
-    
-    
+    //background color
+    [XLNavigationBar shareInstance].xl_navBarBackgroundColor = [UIColor whiteColor];
     return YES;
 }
 

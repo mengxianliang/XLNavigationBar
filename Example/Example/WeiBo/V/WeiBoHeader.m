@@ -2,7 +2,7 @@
 //  WeiBoHeader.m
 //  Example
 //
-//  Created by mxl on 2020/5/22.
+//  Created by MengXianLiang on 2020/5/22.
 //  Copyright © 2020 mxl. All rights reserved.
 //
 

@@ -10,14 +10,10 @@
 
 @interface XLZoomHeader : UIView
 
-/**
- 图片缩进
- */
+///图片缩进
 @property (nonatomic, assign) UIEdgeInsets imageInset;
 
-/**
- 背景图片
- */
+///背景图片
 @property (nonatomic, strong) UIImage *backgroundImage;
 
 @end
@@ -25,6 +21,7 @@
 
 @interface UIScrollView (XLHeaderExtension)
 
+//
 @property (nonatomic, strong) XLZoomHeader *xl_zoomHeader;
 
 @end

@@ -1,22 +1,22 @@
 //
-//  DouYinExampleVC.m
+//  DouyinExampleVC.m
 //  Example
 //
-//  Created by mxl on 2020/5/22.
+//  Created by MengXianLiang on 2020/5/22.
 //  Copyright © 2020 mxl. All rights reserved.
 //
 
-#import "DouYinExampleVC.h"
-#import "DouYinHeader.h"
+#import "DouyinExampleVC.h"
+#import "DouyinHeader.h"
 #import "XLNavigationBar.h"
 
-@interface DouYinExampleVC ()<UITableViewDataSource,UITableViewDelegate>
+@interface DouyinExampleVC ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation DouYinExampleVC
+@implementation DouyinExampleVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +41,7 @@
     self.tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
-    DouYinHeader *header = [[DouYinHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width*0.75)];
+    DouyinHeader *header = [[DouyinHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width*0.75)];
     self.tableView.xl_zoomHeader = header;
 }
 
@@ -89,7 +89,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:138/255.0f green:139/255.0f blue:145/255.0f alpha:1];;
     }
     cell.textLabel.text = @"Pull me baby !!!";
     return cell;

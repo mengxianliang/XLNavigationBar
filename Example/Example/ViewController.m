@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "WeiBoExampleVC.h"
-#import "DouYinExampleVC.h"
+#import "DouyinExampleVC.h"
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -71,11 +71,11 @@
 }
 
 - (NSArray *)titles {
-    return @[@"WeiBo example",@"DouYin example"];
+    return @[@"WeiBo example",@"Douyin example"];
 }
 
 - (NSArray *)vcClasses {
-    return @[WeiBoExampleVC.class,DouYinExampleVC.class];
+    return @[WeiBoExampleVC.class,DouyinExampleVC.class];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -2,13 +2,13 @@
 //  DouYinHeader.m
 //  Example
 //
-//  Created by mxl on 2020/5/22.
+//  Created by MengXianLiang on 2020/5/22.
 //  Copyright © 2020 mxl. All rights reserved.
 //
 
-#import "DouYinHeader.h"
+#import "DouyinHeader.h"
 
-@implementation DouYinHeader
+@implementation DouyinHeader
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -28,7 +28,7 @@
     //设置背景图
     self.backgroundImage = [UIImage imageNamed:@"douyinHeader"];
     //设置背景图缩进
-    self.imageInset = UIEdgeInsetsMake(0, 0, labelHeight + labelHeight + iconH - 20, 0);
+    self.imageInset = UIEdgeInsetsMake(0, 0, labelHeight + labelHeight + iconH - 15, 0);
     
     //自定义内容
     UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.bounds.size.height - labelHeight - 5, 200, labelHeight)];
