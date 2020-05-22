@@ -9,7 +9,6 @@
 #import "XLZoomHeader.h"
 #import <objc/runtime.h>
 
-
 static NSString *XLZoomHeaderContentOffsetKey = @"contentOffset";
 
 @interface XLZoomHeader ()
@@ -106,10 +105,10 @@ static NSString *XLZoomHeaderContentOffsetKey = @"contentOffset";
 
 - (CGRect)imageViewRect {
     CGRect rect = self.bounds;
-    rect.origin.x = self.imageInset.left;
-    rect.size.width = rect.size.width - self.imageInset.left - self.imageInset.right;
-    rect.origin.y = self.imageInset.top;
-    rect.size.height = rect.size.height - self.imageInset.top - self.imageInset.bottom;
+    rect.origin.x = self.backgroundImageInsets.left;
+    rect.size.width = rect.size.width - self.backgroundImageInsets.left - self.backgroundImageInsets.right;
+    rect.origin.y = self.backgroundImageInsets.top;
+    rect.size.height = rect.size.height - self.backgroundImageInsets.top - self.backgroundImageInsets.bottom;
     return rect;
 }
 
