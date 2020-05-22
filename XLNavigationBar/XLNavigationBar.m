@@ -187,7 +187,7 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
 - (void)setXl_statusBarStyle:(UIStatusBarStyle)xl_statusBarStyle {
     objc_setAssociatedObject(self, &XLStatusBarStyleKey,
     @(xl_statusBarStyle), OBJC_ASSOCIATION_COPY);
-    //更新状态栏
+    //updateStatusBarAppearance
     [self.navigationController setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -198,7 +198,7 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
 - (void)setXl_statusBarHidden:(BOOL)xl_statusBarHidden {
     objc_setAssociatedObject(self, &XLStatusBarHiddenKey,
     @(xl_statusBarHidden), OBJC_ASSOCIATION_COPY);
-    //更新状态栏
+    //updateStatusBarAppearance
     [self.navigationController setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -222,7 +222,6 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     [self updateNavigationBarAppearance];
 }
 
-//默认是1
 - (float)xl_navBarBackgroundAlpha {
     id obj = objc_getAssociatedObject(self, &XLBarBackgroundAlphaKey);
     if (!obj) {return 1;}
@@ -233,7 +232,6 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     return self.navigationController.navigationBar.xl_backgroundView.bounds.size.height;
 }
 
-//状态栏 风格
 - (UIStatusBarStyle)xl_preferredStatusBarStyle {
     if (![XLNavigationBar shareInstance].enabled) {
         return [self xl_preferredStatusBarStyle];
@@ -241,7 +239,6 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     return self.xl_statusBarStyle;
 }
 
-//状态栏隐藏
 - (BOOL)xl_prefersStatusBarHidden {
     if (![XLNavigationBar shareInstance].enabled) {
         return [self xl_prefersStatusBarHidden];
@@ -251,46 +248,48 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
 
 - (void)xl_viewDidLoad {
     
+    //judge enabled
     if (![XLNavigationBar shareInstance].enabled) {
         [self xl_viewDidLoad];
     }
     
-    //插入导航栏背景色view
+    //add color view
     if (!self.navigationController.navigationBar.xl_colorView) {
         self.navigationController.navigationBar.xl_colorView = [[UIView alloc] initWithFrame:CGRectZero];
     }
+    
+    //run system viewDidLoad method
     [self xl_viewDidLoad];
 }
 
-//更新导航栏外观
 - (void)xl_viewWillAppear:(BOOL)animated {
     
-    //判断是否是最前面的VC
+    //only run at topVC
     if (![self isEqual:self.navigationController.topViewController]) {
         [self xl_viewWillAppear:animated];
         return;
     }
     
-    //更新导航栏外观
+    //update navigation bar appearance
     [self updateNavigationBarAppearance];
     
-    //更新StatusBar外观
+    //update status bar appearance
     [self.navigationController setNeedsStatusBarAppearanceUpdate];
     
-    //执行系统viewWillAppear方法
+    //run system viewWillAppear method
     [self xl_viewWillAppear:animated];
 }
 
-//更新导航栏外观 原则先全局配置，如果每个控制器自己有对应设定，则以当前控制器设定为准
+///updateNavigationBar apperance. rule: set global appearance first, set current appearance next
 - (void)updateNavigationBarAppearance {
     
-    //全局设置
+    // global appearance
     XLNavigationBar *xlNavigationBar = [XLNavigationBar shareInstance];
     
-    //判断是否开启
+    //judge enabled
      if (!xlNavigationBar.enabled) {return;}
     
-    //设置标题颜色
+    //set title color
     NSDictionary *currentAttributes = self.navigationController.navigationBar.titleTextAttributes;
     if (!currentAttributes) {
         currentAttributes = [[NSDictionary alloc] init];
@@ -308,28 +307,28 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     }
     self.navigationController.navigationBar.titleTextAttributes = newAttributes;
     
-    //设置按钮颜色
+    //set button color
     UIColor *barButtonColor = xlNavigationBar.xl_navBarButtonColor;
     if (self.xl_navBarButtonColor) {
         barButtonColor = self.xl_navBarButtonColor;
     }
     self.navigationController.navigationBar.tintColor = barButtonColor;
     
-    //设置背景颜色
+    //set background color
     UIColor *barBackgroundColor = xlNavigationBar.xl_navBarBackgroundColor;
     if (self.xl_navBarBackgroundColor) {
         barBackgroundColor = self.xl_navBarBackgroundColor;
     }
     self.navigationController.navigationBar.xl_colorView.backgroundColor = barBackgroundColor ? barBackgroundColor : [UIColor whiteColor];
     
-    //设置透明度
+    //set background alpha
     float barBackgroundAlpha = xlNavigationBar.xl_navBarBackgroundAlpha;
     if (self.xl_navBarBackgroundAlpha != 1) {
         barBackgroundAlpha = self.xl_navBarBackgroundAlpha;
     }
     self.navigationController.navigationBar.xl_backgroundView.alpha = barBackgroundAlpha;
     
-    //底部阴影隐藏
+    //set shadow image hidden
     bool barShadowImageHidden = xlNavigationBar.xl_navBarShadowImageHidden;
     if (self.xl_navBarShadowImageHidden) {
         barShadowImageHidden = self.xl_navBarShadowImageHidden;

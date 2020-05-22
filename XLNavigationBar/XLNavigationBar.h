@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shareInstance;
 
-/// 是否开启 默认 NO
+///enabled default NO
 @property (nonatomic, assign) BOOL enabled;
 
 @end
@@ -22,28 +22,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (XLBarExtension)
 
-///状态栏样式 default UIStatusBarStyleDefault
+///statusBar style default UIStatusBarStyleDefault
 @property (nonatomic, assign) UIStatusBarStyle xl_statusBarStyle;
 
-///状态栏隐藏 default NO
+///statusBar hidden default NO
 @property (nonatomic, assign) BOOL xl_statusBarHidden;
 
-///navigationBar 背景颜色 default [UIColor whiteColor]
+///background color  default white
 @property (nonatomic, strong) UIColor *xl_navBarBackgroundColor;
 
-///navigationBar 背景透明度 default 1
+///background alpha default 1
 @property (nonatomic, assign) float xl_navBarBackgroundAlpha;
 
-///navigationBar 标题颜色 default 系统颜色
+///title color default sytem
 @property (nonatomic, strong) UIColor *xl_navBarTitleColor;
 
-///navigationBar 按钮颜色 default 系统颜色
+///bar button color default sytem
 @property (nonatomic, strong) UIColor *xl_navBarButtonColor;
 
-///navigationBar 分割线隐藏 default NO
+///shadow image hidden default NO
 @property (nonatomic, assign) BOOL xl_navBarShadowImageHidden;
 
-///navigationBar 高度
+///navigation bar hieght
 @property (nonatomic, assign, readonly) CGFloat xl_navBarHeight;
 
 @end
