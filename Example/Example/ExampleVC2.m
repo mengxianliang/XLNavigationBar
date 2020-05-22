@@ -23,7 +23,13 @@
     
     self.xl_navBarBackgroundColor = [UIColor greenColor];
     
+    self.xl_navBarTitleColor = [UIColor redColor];
+    
+    self.xl_navBarButtonColor = [UIColor redColor];
+    
     self.xl_statusBarHidden = YES;
+    
+    self.title = @"测试2";
     
 }
 

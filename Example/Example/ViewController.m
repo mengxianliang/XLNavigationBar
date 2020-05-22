@@ -22,6 +22,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.xl_navBarBackgroundColor = [UIColor orangeColor];
+    
+    self.title = @"Example";
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

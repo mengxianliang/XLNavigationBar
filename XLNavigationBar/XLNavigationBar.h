@@ -10,6 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface XLNavigationBar : UIViewController
+
++ (instancetype)shareInstance;
+
+/// 是否开启 默认 NO
+@property (nonatomic, assign) BOOL enabled;
+
+@end
+
+
 @interface UIViewController (XLBarExtension)
 
 ///状态栏样式 default UIStatusBarStyleDefault
