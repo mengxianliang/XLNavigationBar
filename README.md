@@ -54,6 +54,6 @@ self.xl_statusBarHidden = NO;
 
 ### Other
 
-ZoomHeader [XLChannelControl](https://github.com/mengxianliang/XLChannelControl)
+ZoomHeader [XLZoomHeader](https://github.com/mengxianliang/XLZoomHeader)
 
-XLUIKit [XLUIKit](https://github.com/mengxianliang/XLUIKit)
+UI tools  [XLUIKit](https://github.com/mengxianliang/XLUIKit)
