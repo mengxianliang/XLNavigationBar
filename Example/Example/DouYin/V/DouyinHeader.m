@@ -38,7 +38,7 @@
     [self addSubview:numberLabel];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMinY(numberLabel.frame) - labelHeight, 200, labelHeight)];
-    nameLabel.text = @"DouYi";
+    nameLabel.text = @"Douyin";
     nameLabel.textColor = [UIColor whiteColor];
     nameLabel.font = [UIFont boldSystemFontOfSize:20];
     [self addSubview:nameLabel];

@@ -25,7 +25,7 @@
 
 - (void)initUI {
     self.view.backgroundColor = [UIColor colorWithRed:23/255.0f green:23/255.0f blue:34/255.0f alpha:1];
-    self.title = @"DouYin";
+    self.title = @"Douyin";
     [self initTableViewAndHeader];
     [self configNavigationBar];
 }
