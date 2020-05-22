@@ -14,9 +14,14 @@
 		C23DEC4724767F0A00225AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C23DEC4624767F0A00225AEF /* Assets.xcassets */; };
 		C23DEC4A24767F0A00225AEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23DEC4824767F0A00225AEF /* LaunchScreen.storyboard */; };
 		C23DEC4D24767F0A00225AEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C23DEC4C24767F0A00225AEF /* main.m */; };
-		C23DEC5624767F5800225AEF /* XLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C23DEC5524767F5800225AEF /* XLNavigationBar.m */; };
 		C23DEC5B2476811400225AEF /* ExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C23DEC5A2476811400225AEF /* ExampleVC.m */; };
 		C23DEC5E24768FF400225AEF /* ExampleVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = C23DEC5D24768FF400225AEF /* ExampleVC2.m */; };
+		C2C29748247768F0007FD089 /* XLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C29747247768F0007FD089 /* XLNavigationBar.m */; };
+		C2C2974E24776E98007FD089 /* WeiBoExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2974D24776E98007FD089 /* WeiBoExampleVC.m */; };
+		C2C2975124776EA3007FD089 /* DouYinExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2975024776EA3007FD089 /* DouYinExampleVC.m */; };
+		C2C2975824776EC4007FD089 /* XLZoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2975624776EC4007FD089 /* XLZoomHeader.m */; };
+		C2C2975F24776FC4007FD089 /* WeiBoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2975E24776FC4007FD089 /* WeiBoHeader.m */; };
+		C2C2976224776FD0007FD089 /* DouYinHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2976124776FD0007FD089 /* DouYinHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +37,22 @@
 		C23DEC4924767F0A00225AEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C23DEC4B24767F0A00225AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C23DEC4C24767F0A00225AEF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C23DEC5424767F5800225AEF /* XLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNavigationBar.h; sourceTree = "<group>"; };
-		C23DEC5524767F5800225AEF /* XLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNavigationBar.m; sourceTree = "<group>"; };
 		C23DEC592476811400225AEF /* ExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleVC.h; sourceTree = "<group>"; };
 		C23DEC5A2476811400225AEF /* ExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleVC.m; sourceTree = "<group>"; };
 		C23DEC5C24768FF400225AEF /* ExampleVC2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleVC2.h; sourceTree = "<group>"; };
 		C23DEC5D24768FF400225AEF /* ExampleVC2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleVC2.m; sourceTree = "<group>"; };
+		C2C29746247768F0007FD089 /* XLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLNavigationBar.h; sourceTree = "<group>"; };
+		C2C29747247768F0007FD089 /* XLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLNavigationBar.m; sourceTree = "<group>"; };
+		C2C2974C24776E98007FD089 /* WeiBoExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiBoExampleVC.h; sourceTree = "<group>"; };
+		C2C2974D24776E98007FD089 /* WeiBoExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiBoExampleVC.m; sourceTree = "<group>"; };
+		C2C2974F24776EA3007FD089 /* DouYinExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DouYinExampleVC.h; sourceTree = "<group>"; };
+		C2C2975024776EA3007FD089 /* DouYinExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DouYinExampleVC.m; sourceTree = "<group>"; };
+		C2C2975324776EC4007FD089 /* XLZoomHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLZoomHeader.h; sourceTree = "<group>"; };
+		C2C2975624776EC4007FD089 /* XLZoomHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLZoomHeader.m; sourceTree = "<group>"; };
+		C2C2975D24776FC4007FD089 /* WeiBoHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiBoHeader.h; sourceTree = "<group>"; };
+		C2C2975E24776FC4007FD089 /* WeiBoHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiBoHeader.m; sourceTree = "<group>"; };
+		C2C2976024776FD0007FD089 /* DouYinHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DouYinHeader.h; sourceTree = "<group>"; };
+		C2C2976124776FD0007FD089 /* DouYinHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DouYinHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +78,9 @@
 		C23DEC2E24767F0700225AEF = {
 			isa = PBXGroup;
 			children = (
+				C2C2975224776EC4007FD089 /* XLZoomHeader */,
+				C2C29745247768F0007FD089 /* XLNavigationBar */,
 				5EE369EC2476B408001E8814 /* FDFullscreenPopGesture */,
-				C23DEC5324767F5800225AEF /* XLNavigationBar */,
 				C23DEC3924767F0700225AEF /* Example */,
 				C23DEC3824767F0700225AEF /* Products */,
 			);
@@ -81,6 +97,8 @@
 		C23DEC3924767F0700225AEF /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				C2C2974B24776E7D007FD089 /* WeiBo */,
+				C2C2974A24776E77007FD089 /* DouYin */,
 				C23DEC592476811400225AEF /* ExampleVC.h */,
 				C23DEC5A2476811400225AEF /* ExampleVC.m */,
 				C23DEC5C24768FF400225AEF /* ExampleVC2.h */,
@@ -88,16 +106,6 @@
 				C23DEC5724767FB700225AEF /* Supporting Files */,
 			);
 			path = Example;
-			sourceTree = "<group>";
-		};
-		C23DEC5324767F5800225AEF /* XLNavigationBar */ = {
-			isa = PBXGroup;
-			children = (
-				C23DEC5424767F5800225AEF /* XLNavigationBar.h */,
-				C23DEC5524767F5800225AEF /* XLNavigationBar.m */,
-			);
-			name = XLNavigationBar;
-			path = ../XLNavigationBar;
 			sourceTree = "<group>";
 		};
 		C23DEC5724767FB700225AEF /* Supporting Files */ = {
@@ -114,6 +122,79 @@
 				C23DEC4C24767F0A00225AEF /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2C29745247768F0007FD089 /* XLNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				C2C29746247768F0007FD089 /* XLNavigationBar.h */,
+				C2C29747247768F0007FD089 /* XLNavigationBar.m */,
+			);
+			name = XLNavigationBar;
+			path = ../XLNavigationBar;
+			sourceTree = "<group>";
+		};
+		C2C2974A24776E77007FD089 /* DouYin */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2975C24776F98007FD089 /* C */,
+				C2C2975B24776F94007FD089 /* V */,
+			);
+			path = DouYin;
+			sourceTree = "<group>";
+		};
+		C2C2974B24776E7D007FD089 /* WeiBo */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2975A24776F91007FD089 /* V */,
+				C2C2975924776F8C007FD089 /* C */,
+			);
+			path = WeiBo;
+			sourceTree = "<group>";
+		};
+		C2C2975224776EC4007FD089 /* XLZoomHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2975324776EC4007FD089 /* XLZoomHeader.h */,
+				C2C2975624776EC4007FD089 /* XLZoomHeader.m */,
+			);
+			path = XLZoomHeader;
+			sourceTree = "<group>";
+		};
+		C2C2975924776F8C007FD089 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2974C24776E98007FD089 /* WeiBoExampleVC.h */,
+				C2C2974D24776E98007FD089 /* WeiBoExampleVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		C2C2975A24776F91007FD089 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2975D24776FC4007FD089 /* WeiBoHeader.h */,
+				C2C2975E24776FC4007FD089 /* WeiBoHeader.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		C2C2975B24776F94007FD089 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2976024776FD0007FD089 /* DouYinHeader.h */,
+				C2C2976124776FD0007FD089 /* DouYinHeader.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		C2C2975C24776F98007FD089 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2974F24776EA3007FD089 /* DouYinExampleVC.h */,
+				C2C2975024776EA3007FD089 /* DouYinExampleVC.m */,
+			);
+			path = C;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,11 +269,16 @@
 			files = (
 				C23DEC4224767F0700225AEF /* ViewController.m in Sources */,
 				C23DEC3C24767F0700225AEF /* AppDelegate.m in Sources */,
+				C2C2976224776FD0007FD089 /* DouYinHeader.m in Sources */,
 				C23DEC5E24768FF400225AEF /* ExampleVC2.m in Sources */,
 				C23DEC4D24767F0A00225AEF /* main.m in Sources */,
-				C23DEC5624767F5800225AEF /* XLNavigationBar.m in Sources */,
+				C2C29748247768F0007FD089 /* XLNavigationBar.m in Sources */,
 				5EE369EF2476B408001E8814 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				C2C2974E24776E98007FD089 /* WeiBoExampleVC.m in Sources */,
+				C2C2975824776EC4007FD089 /* XLZoomHeader.m in Sources */,
+				C2C2975124776EA3007FD089 /* DouYinExampleVC.m in Sources */,
 				C23DEC5B2476811400225AEF /* ExampleVC.m in Sources */,
+				C2C2975F24776FC4007FD089 /* WeiBoHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

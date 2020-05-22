@@ -25,6 +25,7 @@
     
     self.xl_navBarBackgroundColor = [UIColor redColor];
     self.xl_navBarTitleColor = [UIColor clearColor];
+    self.xl_navBarTitleFont = [UIFont boldSystemFontOfSize:22];
     self.xl_navBarButtonColor = [UIColor whiteColor];
     self.xl_statusBarStyle = UIStatusBarStyleLightContent;
     self.xl_navBarBackgroundAlpha = 0;

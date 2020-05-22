@@ -27,8 +27,10 @@
     [XLNavigationBar shareInstance].enabled = YES;
     //全局配置
     [XLNavigationBar shareInstance].xl_navBarTitleColor = [UIColor greenColor];
+    [XLNavigationBar shareInstance].xl_navBarTitleFont = [UIFont systemFontOfSize:20];
     [XLNavigationBar shareInstance].xl_navBarButtonColor = [UIColor blueColor];
     [XLNavigationBar shareInstance].xl_navBarBackgroundColor = [UIColor yellowColor];
+    
     
     return YES;
 }

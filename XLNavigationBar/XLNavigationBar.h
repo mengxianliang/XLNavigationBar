@@ -34,10 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///background alpha default 1
 @property (nonatomic, assign) float xl_navBarBackgroundAlpha;
 
-///title color default sytem
+///title color default nil
 @property (nonatomic, strong) UIColor *xl_navBarTitleColor;
 
-///bar button color default sytem
+//title font default nil
+@property (nonatomic, strong) UIFont *xl_navBarTitleFont;
+
+///bar button color default nil
 @property (nonatomic, strong) UIColor *xl_navBarButtonColor;
 
 ///shadow image hidden default NO

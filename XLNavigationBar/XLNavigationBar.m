@@ -136,6 +136,7 @@ static NSInteger XLBarColorViewTag = 666666;
 
 static NSString *XLBarBackgroundColorKey = @"XLBarBackgroundColorKey";
 static NSString *XLBarTitleColorKey = @"XLBarTitleColorKey";
+static NSString *XLBarTitleFontKey = @"XLBarTitleFontKey";
 static NSString *XLBarButtonColorKey = @"XLBarButtonColorKey";
 static NSString *XLStatusBarStyleKey = @"XLStatusBarStyleKey";
 static NSString *XLStatusBarHiddenKey = @"XLStatusBarHiddenKey";
@@ -172,6 +173,16 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
 
 - (UIColor *)xl_navBarTitleColor {
     return objc_getAssociatedObject(self, &XLBarTitleColorKey);
+}
+
+- (void)setXl_navBarTitleFont:(UIFont *)xl_navBarTitleFont {
+    objc_setAssociatedObject(self, &XLBarTitleFontKey,
+    xl_navBarTitleFont, OBJC_ASSOCIATION_COPY);
+    [self updateNavigationBarAppearance];
+}
+
+- (UIFont *)xl_navBarTitleFont {
+    return objc_getAssociatedObject(self, &XLBarTitleFontKey);
 }
 
 - (void)setXl_navBarButtonColor:(UIColor *)xl_navBarButtonColor {
@@ -289,21 +300,27 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     //judge enabled
      if (!xlNavigationBar.enabled) {return;}
     
-    //set title color
+    //set title color&font
     NSDictionary *currentAttributes = self.navigationController.navigationBar.titleTextAttributes;
     if (!currentAttributes) {
         currentAttributes = [[NSDictionary alloc] init];
     }
-    UIColor *titleColor = [currentAttributes objectForKey:NSForegroundColorAttributeName];
-    if (xlNavigationBar.xl_navBarTitleColor) {
-        titleColor = xlNavigationBar.xl_navBarTitleColor;
-    }
+    NSMutableDictionary *newAttributes = [NSMutableDictionary dictionaryWithDictionary:currentAttributes];
+    //color
+    UIColor *titleColor = xlNavigationBar.xl_navBarTitleColor;
     if (self.xl_navBarTitleColor) {
         titleColor = self.xl_navBarTitleColor;
     }
-    NSMutableDictionary *newAttributes = [NSMutableDictionary dictionaryWithDictionary:currentAttributes];
     if (titleColor) {
         [newAttributes setObject:titleColor forKey:NSForegroundColorAttributeName];
+    }
+    //font
+    UIFont *font = xlNavigationBar.xl_navBarTitleFont;
+    if (self.xl_navBarTitleFont) {
+        font = self.xl_navBarTitleFont;
+    }
+    if (font) {
+        [newAttributes setObject:font forKey:NSFontAttributeName];
     }
     self.navigationController.navigationBar.titleTextAttributes = newAttributes;
     
