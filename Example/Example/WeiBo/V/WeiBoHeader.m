@@ -18,10 +18,10 @@
 }
 
 - (void)buildUI {
-    //设置背景图
+    
     self.backgroundImage = [UIImage imageNamed:@"weiboHeader"];
     
-    //自定义内容
+   
     UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
     icon.image = [UIImage imageNamed:@"Icon"];
     icon.center = CGPointMake(self.bounds.size.width/2.0f, self.bounds.size.height/2.0f);

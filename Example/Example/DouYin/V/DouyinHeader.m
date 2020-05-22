@@ -25,12 +25,12 @@
     
     CGFloat labelHeight = 30.0f;
     
-    //设置背景图
+  
     self.backgroundImage = [UIImage imageNamed:@"douyinHeader"];
-    //设置背景图缩进
+   
     self.backgroundImageInsets = UIEdgeInsetsMake(0, 0, labelHeight + labelHeight + iconH - 15, 0);
     
-    //自定义内容
+  
     UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.bounds.size.height - labelHeight - 5, 200, labelHeight)];
     numberLabel.text = @"Number:12345678";
     numberLabel.textColor = [UIColor whiteColor];
