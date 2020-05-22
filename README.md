@@ -6,7 +6,7 @@
 | ---- | ---- | 
 |![image](https://github.com/mengxianliang/ImageRepository/blob/master/XLNavigationBar/weibo.gif)|![image](https://github.com/mengxianliang/ImageRepository/blob/master/XLNavigationBar/douyin.gif)|
 
-## Useage:
+## Usage:
 
 ### Global Config
 
@@ -51,3 +51,9 @@ self.xl_statusBarStyle = UIStatusBarStyleLightContent;
 //status bar hidden
 self.xl_statusBarHidden = NO;
 ```
+
+### Other
+
+ZoomHeader [XLChannelControl](https://github.com/mengxianliang/XLChannelControl)
+
+XLUIKit [XLUIKit](https://github.com/mengxianliang/XLUIKit)
