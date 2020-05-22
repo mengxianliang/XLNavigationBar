@@ -82,7 +82,10 @@ static NSString *XLZoomHeaderContentOffsetKey = @"contentOffset";
 #pragma mark 放大动画
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change {
     //顶部适应缩进
-    CGFloat top = self.scrollView.adjustedContentInset.top;
+    CGFloat top = 0;
+    if (@available(iOS 11.0, *)) {
+        top = self.scrollView.adjustedContentInset.top;
+    }
     //移动距离
     CGFloat offset = fabs(self.scrollView.contentOffset.y) - top;
     //计算高度
@@ -112,8 +115,9 @@ static NSString *XLZoomHeaderContentOffsetKey = @"contentOffset";
 
 #pragma mark -
 #pragma mark Setter
-- (void)setImage:(UIImage *)image {
-    _backGroundImageView.image = image;
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    _backgroundImage = backgroundImage;
+    self.backGroundImageView.image = backgroundImage;
 }
 
 - (void)dealloc {

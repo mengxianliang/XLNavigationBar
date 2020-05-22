@@ -27,7 +27,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"WeiBo";
     [self initTableViewAndHeader];
-    [self configNavigationBarDefault];
+    [self configNavigationBar];
 }
 
 - (void)initTableViewAndHeader {
@@ -44,18 +44,12 @@
     self.tableView.xl_zoomHeader = header;
 }
 
-- (void)configNavigationBarDefault {
+- (void)configNavigationBar {
     self.xl_navBarBackgroundColor = [UIColor colorWithRed:250/255.0f green:250/255.0f blue:250/255.0f alpha:1];
     self.xl_navBarBackgroundAlpha = 0;
     self.xl_navBarTitleColor = [UIColor clearColor];
     self.xl_navBarButtonColor = [UIColor whiteColor];
     self.xl_statusBarStyle = UIStatusBarStyleLightContent;
-}
-
-- (void)configNavigationBarNew {
-    self.xl_navBarButtonColor = [UIColor colorWithRed:96/255.0f green:96/255.0f blue:96/255.0f alpha:1];
-    self.xl_navBarTitleColor = [UIColor colorWithRed:50/255.0f green:50/255.0f blue:50/255.0f alpha:1];
-    self.xl_statusBarStyle = UIStatusBarStyleDefault;
 }
 
 #pragma mark -
@@ -69,17 +63,19 @@
     CGFloat targetY = distance - headerHeight;
     CGFloat alpha = (1 - (targetY - contentOffsetY)/distance);
     
-    //update background alpha
-    self.xl_navBarBackgroundAlpha = alpha;
-    
     //update colors
     if (contentOffsetY <= targetY) {
-        [self configNavigationBarDefault];
+        self.xl_navBarTitleColor = [UIColor clearColor];
+        self.xl_navBarButtonColor = [UIColor whiteColor];
+        self.xl_statusBarStyle = UIStatusBarStyleLightContent;
     }else {
-        [self configNavigationBarNew];
+        self.xl_navBarButtonColor = [UIColor colorWithRed:96/255.0f green:96/255.0f blue:96/255.0f alpha:1];
+        self.xl_navBarTitleColor = [UIColor colorWithRed:50/255.0f green:50/255.0f blue:50/255.0f alpha:1];
+        self.xl_statusBarStyle = UIStatusBarStyleDefault;
     }
     
-//    NSLog(@"y = %f,headerHeight = %f,distance = %f,targetY = %f,alpha = %f",contentOffsetY, self.tableView.xl_zoomHeader.bounds.size.height, distance,targetY,alpha);
+    //update background alpha
+    self.xl_navBarBackgroundAlpha = alpha;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

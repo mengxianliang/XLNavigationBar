@@ -18,7 +18,7 @@
 /**
  背景图片
  */
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *backgroundImage;
 
 @end
 
