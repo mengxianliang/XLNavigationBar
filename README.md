@@ -8,7 +8,7 @@
 
 ## Usage:
 
-*you can config by global or view controller itself, if you config both,  it will prioritize view controller's config.*
+*You can config by global or view controller itself, if config both,  it will prioritize view controller's config, don't forget set XLNavigationBar enabled at first !*
 
 ### Global Config
 
