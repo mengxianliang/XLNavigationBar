@@ -16,7 +16,7 @@ pod 'XLNavigationBar'
 
 ## Usage
 
-*You can config by global or view controller itself, if config both,  it will prioritize view controller's config, don't forget set XLNavigationBar enabled at first !*
+You can config by global or view controller itself, if config both,  it will prioritize view controller's config. Don't forget set XLNavigationBar enabled at first !*
 
 ### Global Config
 
@@ -64,6 +64,6 @@ self.xl_statusBarHidden = NO;
 
 ## Other
 
-ZoomHeader [XLZoomHeader](https://github.com/mengxianliang/XLZoomHeader)
+Zoom header [XLZoomHeader](https://github.com/mengxianliang/XLZoomHeader)
 
 UI tools  [XLUIKit](https://github.com/mengxianliang/XLUIKit)
