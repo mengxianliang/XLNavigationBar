@@ -10,7 +10,7 @@
 
 To integrate XLNavigationBar into your Xcode project using CocoaPods, specify it in your Podfile:
 
-```
+```ruby
 pod 'XLNavigationBar'
 ```
 
