@@ -19,6 +19,7 @@
 		C2C2975824776EC4007FD089 /* XLZoomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2975624776EC4007FD089 /* XLZoomHeader.m */; };
 		C2C2975F24776FC4007FD089 /* WeiBoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2975E24776FC4007FD089 /* WeiBoHeader.m */; };
 		C2C2976224776FD0007FD089 /* DouyinHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2976124776FD0007FD089 /* DouyinHeader.m */; };
+		C2C29790247BE78E007FD089 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2978F247BE78E007FD089 /* ViewController2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		C2C2975E24776FC4007FD089 /* WeiBoHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiBoHeader.m; sourceTree = "<group>"; };
 		C2C2976024776FD0007FD089 /* DouyinHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DouyinHeader.h; sourceTree = "<group>"; };
 		C2C2976124776FD0007FD089 /* DouyinHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DouyinHeader.m; sourceTree = "<group>"; };
+		C2C2978E247BE78E007FD089 /* ViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		C2C2978F247BE78E007FD089 /* ViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 				C23DEC3B24767F0700225AEF /* AppDelegate.m */,
 				C23DEC4024767F0700225AEF /* ViewController.h */,
 				C23DEC4124767F0700225AEF /* ViewController.m */,
+				C2C2978E247BE78E007FD089 /* ViewController2.h */,
+				C2C2978F247BE78E007FD089 /* ViewController2.m */,
 				C23DEC4324767F0700225AEF /* Main.storyboard */,
 				C23DEC4624767F0A00225AEF /* Assets.xcassets */,
 				C23DEC4824767F0A00225AEF /* LaunchScreen.storyboard */,
@@ -251,6 +256,7 @@
 				C2C29748247768F0007FD089 /* XLNavigationBar.m in Sources */,
 				C2C2974E24776E98007FD089 /* WeiBoExampleVC.m in Sources */,
 				C2C2975824776EC4007FD089 /* XLZoomHeader.m in Sources */,
+				C2C29790247BE78E007FD089 /* ViewController2.m in Sources */,
 				C2C2975124776EA3007FD089 /* DouyinExampleVC.m in Sources */,
 				C2C2975F24776FC4007FD089 /* WeiBoHeader.m in Sources */,
 			);

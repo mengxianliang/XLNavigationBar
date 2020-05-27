@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "WeiBoExampleVC.h"
 #import "DouyinExampleVC.h"
+#import "XLNavigationBar.h"
+#import "ViewController2.h"
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -18,16 +20,6 @@
 
 @implementation ViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.title = @"XLNavigationBar";
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    self.title = @"";
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self buildUI];
@@ -36,10 +28,17 @@
 - (void)buildUI {
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.title = @"Example";
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:_tableView];
+    
+    self.xl_navBarBackgroundColor = [UIColor whiteColor];
+    self.xl_navBarBackgroundAlpha = 1;
+    self.xl_navBarTitleColor = [UIColor redColor];
+    self.xl_navBarButtonColor = [UIColor blackColor];
 }
 
 #pragma mark -
@@ -67,15 +66,14 @@
     Class class = [self vcClasses][indexPath.row];
     UIViewController *vc = [[class alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 - (NSArray *)titles {
-    return @[@"WeiBo example",@"Douyin example"];
+    return @[@"WeiBo example",@"Douyin example",@"Other"];
 }
 
 - (NSArray *)vcClasses {
-    return @[WeiBoExampleVC.class,DouyinExampleVC.class];
+    return @[WeiBoExampleVC.class,DouyinExampleVC.class,ViewController2.class];
 }
 
 - (void)didReceiveMemoryWarning {

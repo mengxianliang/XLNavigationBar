@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface UIViewController (XLBarExtension)
+@interface UIViewController (XLBarExtension)<UINavigationControllerDelegate>
 
 ///statusBar style default UIStatusBarStyleDefault
 @property (nonatomic, assign) UIStatusBarStyle xl_statusBarStyle;
