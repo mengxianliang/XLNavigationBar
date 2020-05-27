@@ -39,6 +39,8 @@
     self.xl_navBarBackgroundAlpha = 1;
     self.xl_navBarTitleColor = [UIColor redColor];
     self.xl_navBarButtonColor = [UIColor blackColor];
+    
+//    self.navigationController.navigationBar.translucent = NO;
 }
 
 #pragma mark -

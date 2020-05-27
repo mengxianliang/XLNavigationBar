@@ -23,7 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C23DEC3724767F0700225AEF /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C23DEC3724767F0700225AEF /* XLNavigationBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLNavigationBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23DEC3A24767F0700225AEF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C23DEC3B24767F0700225AEF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C23DEC4024767F0700225AEF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		C23DEC3824767F0700225AEF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C23DEC3724767F0700225AEF /* Example.app */,
+				C23DEC3724767F0700225AEF /* XLNavigationBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,7 +196,7 @@
 			);
 			name = Example;
 			productName = Example;
-			productReference = C23DEC3724767F0700225AEF /* Example.app */;
+			productReference = C23DEC3724767F0700225AEF /* XLNavigationBar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -407,7 +407,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mxl.Example;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XLNavigationBar;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -425,7 +425,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mxl.Example;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XLNavigationBar;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
