@@ -9,7 +9,24 @@
 #import "XLNavigationBar.h"
 #import <objc/runtime.h>
 
-//------------------------------------------------------------------------------------------
+#pragma mark -------------------------------------------------------------------------------------------------------------------------
+#pragma mark XLNavigationBar
+
+@implementation XLNavigationBar
+
++ (instancetype)shareInstance {
+    static XLNavigationBar *bar = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bar = [[XLNavigationBar alloc] init];
+    });
+    return bar;
+}
+
+@end
+
+#pragma mark -------------------------------------------------------------------------------------------------------------------------
+#pragma mark UIColor + Transform
 
 @interface UIColor (Transform)
 
@@ -49,22 +66,8 @@
 
 @end
 
-//------------------------------------------------------------------------------------------
-
-@implementation XLNavigationBar
-
-+ (instancetype)shareInstance {
-    static XLNavigationBar *bar = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        bar = [[XLNavigationBar alloc] init];
-    });
-    return bar;
-}
-
-@end
-
-//------------------------------------------------------------------------------------------
+#pragma mark -------------------------------------------------------------------------------------------------------------------------
+#pragma mark NSObject + swizzle
 
 @interface NSObject (Swizzle)
 
@@ -94,7 +97,8 @@
 
 @end
 
-//------------------------------------------------------------------------------------------
+#pragma mark -------------------------------------------------------------------------------------------------------------------------
+#pragma mark UINavigationBar + extension
 
 static NSString *XLBarColorViewKey = @"XLBarColorViewKey";
 static NSInteger XLBarColorViewTag = 666666;
@@ -168,9 +172,10 @@ static NSInteger XLBarRightColorViewTag = 7777777;
 
 @end
 
-//------------------------------------------------------------------------------------------
+#pragma mark -------------------------------------------------------------------------------------------------------------------------
+#pragma mark UINavigationController + extension
 
-@interface UINavigationController (XLExtension)<UINavigationControllerDelegate>
+@interface UINavigationController (XLExtension)
 
 @property (nonatomic, strong, readonly) UIViewController *xl_fromeVC;
 
@@ -203,79 +208,10 @@ static NSInteger XLBarRightColorViewTag = 7777777;
     return self.topViewController.prefersStatusBarHidden;
 }
 
-- (void)viewDidLoad {
-    self.delegate = self;
-}
-
 - (void)xl_updateInteractiveTransition:(CGFloat)percentComplete {
     self.navigationBar.xl_backgroundView.alpha = 0;
     self.navigationBar.tintColor = [self.xl_fromeVC.xl_navBarButtonColor transformTo:self.xl_toVC.xl_navBarButtonColor progress:percentComplete];
     [self xl_updateInteractiveTransition:percentComplete];
-}
-
-#pragma mark-
-#pragma NavigationDelegate
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    NSLog(@"导航显示新的视图开始");
-    [self updateNavigationBarBackgroundColor];
-    
-    id <UIViewControllerTransitionCoordinator>tc = navigationController.topViewController.transitionCoordinator;
-    [tc notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        NSLog(@"手动拖拽返回终端");
-        CGFloat duration = tc.cancelled ? tc.transitionDuration*tc.percentComplete : tc.transitionDuration*(1-tc.percentComplete);
-        [UIView animateWithDuration:duration animations:^{
-            self.navigationBar.tintColor = tc.cancelled ? self.xl_fromeVC.xl_navBarButtonColor : self.xl_toVC.xl_navBarButtonColor;
-        }];
-        
-    }];
-    [tc animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        if (tc.cancelled) {
-            NSLog(@"动画结束被取消");
-            [self resetNavigationBarBackgroundColor];
-        }
-    }];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    NSLog(@"导航显示新的视图结束");
-    [self resetNavigationBarBackgroundColor];
-}
-
-
-//开始显示时 更新导航栏背景色
-- (void)updateNavigationBarBackgroundColor {
-    
-    NSLog(@"更新导航栏");
-    
-    self.navigationBar.xl_backgroundView.alpha = 0;
-
-    [self.navigationBar.xl_colorView removeFromSuperview];
-    self.navigationBar.xl_colorView.backgroundColor = self.xl_toVC.xl_navBarBackgroundColor;
-    self.navigationBar.xl_colorView.alpha = self.xl_toVC.xl_navBarBackgroundAlpha;
-    [self.xl_toVC.view addSubview:self.navigationBar.xl_colorView];
-
-    [self.navigationBar.xl_rightColorView removeFromSuperview];
-    self.navigationBar.xl_rightColorView.backgroundColor = self.xl_fromeVC.xl_navBarBackgroundColor;
-    self.navigationBar.xl_rightColorView.alpha = self.xl_fromeVC.xl_navBarBackgroundAlpha;
-    [self.xl_fromeVC.view addSubview:self.navigationBar.xl_rightColorView];
-}
-
-//结束时 恢复背景色
-- (void)resetNavigationBarBackgroundColor {
-    
-    NSLog(@"重置导航栏");
-    
-    self.navigationBar.xl_backgroundView.alpha = self.topViewController.xl_navBarBackgroundAlpha;
-
-    [self.navigationBar.xl_colorView removeFromSuperview];
-    self.navigationBar.xl_colorView = self.navigationBar.xl_colorView;
-    self.navigationBar.xl_colorView.alpha = 1;
-    self.navigationBar.xl_colorView.backgroundColor = self.topViewController.xl_navBarBackgroundColor;
-
-    [self.navigationBar.xl_rightColorView removeFromSuperview];
-    self.navigationBar.xl_rightColorView = self.navigationBar.xl_rightColorView;
-    self.navigationBar.xl_rightColorView.alpha = 1;
-    self.navigationBar.xl_rightColorView.backgroundColor = nil;
 }
 
 - (UIViewController *)xl_fromeVC {
@@ -288,7 +224,105 @@ static NSInteger XLBarRightColorViewTag = 7777777;
 
 @end
 
-//------------------------------------------------------------------------------------------
+#pragma mark -------------------------------------------------------------------------------------------------------------------------
+#pragma mark UIViewController + transition
+
+
+@interface UIViewController (XLBarTransition)<UINavigationControllerDelegate>
+
+@end
+
+@implementation UIViewController (XLBarTransition)
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self swizzleSelector:@selector(viewWillAppear:) withSelector:@selector(xl_transition_viewWillAppear:)];
+        [self swizzleSelector:@selector(viewWillDisappear:) withSelector:@selector(xl_transition_viewWillDisappear:)];
+    });
+}
+
+- (void)xl_transition_viewWillAppear:(BOOL)animated {
+    self.navigationController.delegate = self;
+    [self xl_transition_viewWillAppear:animated];
+    NSLog(@"xl_transition_viewWillAppear");
+}
+
+- (void)xl_transition_viewWillDisappear:(BOOL)animated {
+    self.navigationController.delegate = nil;
+    [self xl_transition_viewWillDisappear:animated];
+    NSLog(@"xl_transition_viewWillDisappear");
+}
+
+#pragma mark -
+#pragma mark navigation controller delegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    //updante background color when show new vc
+    [self updateNavigationBarBackgroundColor];
+    
+    //drag back end
+    id <UIViewControllerTransitionCoordinator>tc = navigationController.topViewController.transitionCoordinator;
+    [tc notifyWhenInteractionChangesUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        CGFloat duration = tc.cancelled ? tc.transitionDuration*tc.percentComplete : tc.transitionDuration*(1-tc.percentComplete);
+        [UIView animateWithDuration:duration animations:^{
+            self.navigationController.navigationBar.tintColor = tc.cancelled ? self.navigationController.xl_fromeVC.xl_navBarButtonColor : self.navigationController.xl_toVC.xl_navBarButtonColor;
+        }];
+        
+    }];
+    
+    // animation end by canclled
+    [tc animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        if (tc.cancelled) {
+            [self resetNavigationBarBackgroundColor];
+        }
+    }];
+}
+
+// did show new viewController
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [self resetNavigationBarBackgroundColor];
+}
+
+
+//update navbar background color
+- (void)updateNavigationBarBackgroundColor {
+    
+    self.navigationController.navigationBar.xl_backgroundView.alpha = 0;
+
+    [self.navigationController.navigationBar.xl_colorView removeFromSuperview];
+    self.navigationController.navigationBar.xl_colorView.backgroundColor = self.navigationController.xl_toVC.xl_navBarBackgroundColor;
+    self.navigationController.navigationBar.xl_colorView.alpha = self.navigationController.xl_toVC.xl_navBarBackgroundAlpha;
+    [self.navigationController.xl_toVC.view addSubview:self.navigationController.navigationBar.xl_colorView];
+
+    [self.navigationController.navigationBar.xl_rightColorView removeFromSuperview];
+    self.navigationController.navigationBar.xl_rightColorView.backgroundColor = self.navigationController.xl_fromeVC.xl_navBarBackgroundColor;
+    self.navigationController.navigationBar.xl_rightColorView.alpha = self.navigationController.xl_fromeVC.xl_navBarBackgroundAlpha;
+    [self.navigationController.xl_fromeVC.view addSubview:self.navigationController.navigationBar.xl_rightColorView];
+}
+
+//reset navbar background color
+- (void)resetNavigationBarBackgroundColor {
+    
+    self.navigationController.navigationBar.xl_backgroundView.alpha = self.navigationController.topViewController.xl_navBarBackgroundAlpha;
+
+    [self.navigationController.navigationBar.xl_colorView removeFromSuperview];
+    self.navigationController.navigationBar.xl_colorView = self.navigationController.navigationBar.xl_colorView;
+    self.navigationController.navigationBar.xl_colorView.alpha = 1;
+    self.navigationController.navigationBar.xl_colorView.backgroundColor = self.navigationController.topViewController.xl_navBarBackgroundColor;
+
+    [self.navigationController.navigationBar.xl_rightColorView removeFromSuperview];
+    self.navigationController.navigationBar.xl_rightColorView = self.navigationController.navigationBar.xl_rightColorView;
+    self.navigationController.navigationBar.xl_rightColorView.alpha = 1;
+    self.navigationController.navigationBar.xl_rightColorView.backgroundColor = nil;
+}
+
+
+@end
+
+#pragma mark -------------------------------------------------------------------------------------------------------------------------
+#pragma mark UIViewController + extension
 
 static NSString *XLBarBackgroundColorKey = @"XLBarBackgroundColorKey";
 static NSString *XLBarTitleColorKey = @"XLBarTitleColorKey";
@@ -298,12 +332,6 @@ static NSString *XLStatusBarStyleKey = @"XLStatusBarStyleKey";
 static NSString *XLStatusBarHiddenKey = @"XLStatusBarHiddenKey";
 static NSString *XLBarShadowImageHiddenKey = @"XLBarShadowImageHiddenKey";
 static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
-
-@interface XLBarExtension
-
-@property (nonatomic, strong) NSString *shit;
-
-@end
 
 @implementation UIViewController (XLBarExtension)
 
