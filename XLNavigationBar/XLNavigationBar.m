@@ -209,6 +209,10 @@ static NSInteger XLBarRightColorViewTag = 7777777;
 }
 
 - (void)xl_updateInteractiveTransition:(CGFloat)percentComplete {
+    if (![XLNavigationBar shareInstance].enabled) {
+        [self xl_updateInteractiveTransition:percentComplete];
+        return;
+    }
     self.navigationBar.xl_backgroundView.alpha = 0;
     self.navigationBar.tintColor = [self.xl_fromeVC.xl_navBarButtonColor transformTo:self.xl_toVC.xl_navBarButtonColor progress:percentComplete];
     [self xl_updateInteractiveTransition:percentComplete];
@@ -243,20 +247,23 @@ static NSInteger XLBarRightColorViewTag = 7777777;
 }
 
 - (void)xl_transition_viewWillAppear:(BOOL)animated {
-    self.navigationController.delegate = self;
     [self xl_transition_viewWillAppear:animated];
+    if ([XLNavigationBar shareInstance].enabled) {
+        self.navigationController.delegate = self;
+    }
     NSLog(@"xl_transition_viewWillAppear");
 }
 
 - (void)xl_transition_viewWillDisappear:(BOOL)animated {
-    self.navigationController.delegate = nil;
     [self xl_transition_viewWillDisappear:animated];
+    if ([XLNavigationBar shareInstance].enabled) {
+        self.navigationController.delegate = nil;
+    }
     NSLog(@"xl_transition_viewWillDisappear");
 }
 
 #pragma mark -
 #pragma mark navigation controller delegate
-
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     
     //updante background color when show new vc
