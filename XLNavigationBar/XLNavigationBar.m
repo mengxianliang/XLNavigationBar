@@ -103,14 +103,14 @@
 static NSString *XLBarColorViewKey = @"XLBarColorViewKey";
 static NSInteger XLBarColorViewTag = 666666;
 
-static NSString *XLBarRightColorViewKey = @"XLBarRightColorViewKey";
-static NSInteger XLBarRightColorViewTag = 7777777;
+static NSString *XLBarTempColorViewKey = @"XLBarTempColorViewKey";
+static NSInteger XLBarTempColorViewTag = 7777777;
 
 @interface UINavigationBar (XLExtension)
 
 @property (nonatomic, strong) UIView *xl_colorView;
 
-@property (nonatomic, strong) UIView *xl_rightColorView;
+@property (nonatomic, strong) UIView *xl_tempColorView;
 
 @property (nonatomic, strong, readonly) UIView *xl_backgroundView;
 
@@ -134,7 +134,6 @@ static NSInteger XLBarRightColorViewTag = 7777777;
             [subview removeFromSuperview];
         }
     }
-//    [self.xl_backgroundView insertSubview:xl_colorView atIndex:0];
     [self.xl_backgroundView addSubview:xl_colorView];
     [self setNeedsDisplay];
 }
@@ -143,26 +142,26 @@ static NSInteger XLBarRightColorViewTag = 7777777;
     return objc_getAssociatedObject(self, &XLBarColorViewKey);
 }
 
-- (void)setXl_rightColorView:(UIView *)xl_rightColorView {
-    objc_setAssociatedObject(self, &XLBarRightColorViewKey,
-    xl_rightColorView, OBJC_ASSOCIATION_RETAIN);
-    xl_rightColorView.tag = XLBarRightColorViewTag;
+- (void)setXl_tempColorView:(UIView *)xl_tempColorView {
+    objc_setAssociatedObject(self, &XLBarTempColorViewKey,
+    xl_tempColorView, OBJC_ASSOCIATION_RETAIN);
+    xl_tempColorView.tag = XLBarTempColorViewTag;
     for (UIView *subview in self.xl_backgroundView.subviews) {
-        if (subview.tag == XLBarRightColorViewTag) {
+        if (subview.tag == XLBarTempColorViewTag) {
             [subview removeFromSuperview];
         }
     }
-    [self.xl_backgroundView insertSubview:xl_rightColorView belowSubview:self.xl_colorView];
+    [self.xl_backgroundView insertSubview:xl_tempColorView belowSubview:self.xl_colorView];
     [self setNeedsDisplay];
 }
 
-- (UIView *)xl_rightColorView {
-    return objc_getAssociatedObject(self, &XLBarRightColorViewKey);
+- (UIView *)xl_tempColorView {
+    return objc_getAssociatedObject(self, &XLBarTempColorViewKey);
 }
 
 - (void)xl_layoutSubviews {
     self.xl_colorView.frame = self.xl_backgroundView.bounds;
-    self.xl_rightColorView.frame = self.xl_backgroundView.bounds;
+    self.xl_tempColorView.frame = self.xl_backgroundView.bounds;
     [self xl_layoutSubviews];
 }
 
@@ -209,13 +208,10 @@ static NSInteger XLBarRightColorViewTag = 7777777;
 }
 
 - (void)xl_updateInteractiveTransition:(CGFloat)percentComplete {
-    if (![XLNavigationBar shareInstance].enabled) {
-        [self xl_updateInteractiveTransition:percentComplete];
-        return;
-    }
-    self.navigationBar.xl_backgroundView.alpha = 0;
-    self.navigationBar.tintColor = [self.xl_fromeVC.xl_navBarButtonColor transformTo:self.xl_toVC.xl_navBarButtonColor progress:percentComplete];
     [self xl_updateInteractiveTransition:percentComplete];
+    if (![XLNavigationBar shareInstance].enabled) {return;}
+    self.navigationBar.tintColor = [self.xl_fromeVC.xl_navBarButtonColor transformTo:self.xl_toVC.xl_navBarButtonColor progress:percentComplete];
+    
 }
 
 - (UIViewController *)xl_fromeVC {
@@ -251,7 +247,6 @@ static NSInteger XLBarRightColorViewTag = 7777777;
     if ([XLNavigationBar shareInstance].enabled) {
         self.navigationController.delegate = self;
     }
-    NSLog(@"xl_transition_viewWillAppear");
 }
 
 - (void)xl_transition_viewWillDisappear:(BOOL)animated {
@@ -259,7 +254,6 @@ static NSInteger XLBarRightColorViewTag = 7777777;
     if ([XLNavigationBar shareInstance].enabled) {
         self.navigationController.delegate = nil;
     }
-    NSLog(@"xl_transition_viewWillDisappear");
 }
 
 #pragma mark -
@@ -276,7 +270,6 @@ static NSInteger XLBarRightColorViewTag = 7777777;
         [UIView animateWithDuration:duration animations:^{
             self.navigationController.navigationBar.tintColor = tc.cancelled ? self.navigationController.xl_fromeVC.xl_navBarButtonColor : self.navigationController.xl_toVC.xl_navBarButtonColor;
         }];
-        
     }];
     
     // animation end by canclled
@@ -303,10 +296,10 @@ static NSInteger XLBarRightColorViewTag = 7777777;
     self.navigationController.navigationBar.xl_colorView.alpha = self.navigationController.xl_toVC.xl_navBarBackgroundAlpha;
     [self.navigationController.xl_toVC.view addSubview:self.navigationController.navigationBar.xl_colorView];
 
-    [self.navigationController.navigationBar.xl_rightColorView removeFromSuperview];
-    self.navigationController.navigationBar.xl_rightColorView.backgroundColor = self.navigationController.xl_fromeVC.xl_navBarBackgroundColor;
-    self.navigationController.navigationBar.xl_rightColorView.alpha = self.navigationController.xl_fromeVC.xl_navBarBackgroundAlpha;
-    [self.navigationController.xl_fromeVC.view addSubview:self.navigationController.navigationBar.xl_rightColorView];
+    [self.navigationController.navigationBar.xl_tempColorView removeFromSuperview];
+    self.navigationController.navigationBar.xl_tempColorView.backgroundColor = self.navigationController.xl_fromeVC.xl_navBarBackgroundColor;
+    self.navigationController.navigationBar.xl_tempColorView.alpha = self.navigationController.xl_fromeVC.xl_navBarBackgroundAlpha;
+    [self.navigationController.xl_fromeVC.view addSubview:self.navigationController.navigationBar.xl_tempColorView];
 }
 
 //reset navbar background color
@@ -319,10 +312,10 @@ static NSInteger XLBarRightColorViewTag = 7777777;
     self.navigationController.navigationBar.xl_colorView.alpha = 1;
     self.navigationController.navigationBar.xl_colorView.backgroundColor = self.navigationController.topViewController.xl_navBarBackgroundColor;
 
-    [self.navigationController.navigationBar.xl_rightColorView removeFromSuperview];
-    self.navigationController.navigationBar.xl_rightColorView = self.navigationController.navigationBar.xl_rightColorView;
-    self.navigationController.navigationBar.xl_rightColorView.alpha = 1;
-    self.navigationController.navigationBar.xl_rightColorView.backgroundColor = nil;
+    [self.navigationController.navigationBar.xl_tempColorView removeFromSuperview];
+    self.navigationController.navigationBar.xl_tempColorView = self.navigationController.navigationBar.xl_tempColorView;
+    self.navigationController.navigationBar.xl_tempColorView.alpha = 1;
+    self.navigationController.navigationBar.xl_tempColorView.backgroundColor = nil;
 }
 
 
@@ -456,31 +449,29 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
 
 - (void)xl_viewDidLoad {
     
+    //run system viewDidLoad method
+    [self xl_viewDidLoad];
+    
     //judge enabled
-    if (![XLNavigationBar shareInstance].enabled) {
-        [self xl_viewDidLoad];
-    }
+    if (![XLNavigationBar shareInstance].enabled) {return;}
     
     //add color view
     if (!self.navigationController.navigationBar.xl_colorView) {
         self.navigationController.navigationBar.xl_colorView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
-    if (!self.navigationController.navigationBar.xl_rightColorView) {
-        self.navigationController.navigationBar.xl_rightColorView = [[UIView alloc] initWithFrame:CGRectZero];
+    //add temp color view
+    if (!self.navigationController.navigationBar.xl_tempColorView) {
+        self.navigationController.navigationBar.xl_tempColorView = [[UIView alloc] initWithFrame:CGRectZero];
     }
-    
-    //run system viewDidLoad method
-    [self xl_viewDidLoad];
 }
 
 - (void)xl_viewWillAppear:(BOOL)animated {
+    //run system viewWillAppear method
+    [self xl_viewWillAppear:animated];
     
     //only run at topVC
-    if (![self isEqual:self.navigationController.topViewController]) {
-        [self xl_viewWillAppear:animated];
-        return;
-    }
+    if (![self isEqual:self.navigationController.topViewController]) {return;}
     
     //update title attributes
     [self updateNavigationBarTitleTextAttributes];
@@ -496,8 +487,6 @@ static NSString *XLBarBackgroundAlphaKey = @"XLBarBackgroundAlphaKey";
     //update status bar appearance
     [self.navigationController setNeedsStatusBarAppearanceUpdate];
 
-    //run system viewWillAppear method
-    [self xl_viewWillAppear:animated];
 }
 
 ///updateNavigationBar apperance. rule: set global appearance first, set current appearance next
